@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+  <meta name="theme-color" content="#05060c">
+  <meta name="description" content="Garage Boss Remastered, an original Sierra-era inspired parking comedy adventure.">
+  <title>Garage Boss Remastered: Headquarters</title>
+</head>
+<body>
+  <main id="shell" aria-label="Garage Boss Remastered">
+    <canvas id="game" width="320" height="200" aria-label="Point-and-click adventure game"></canvas>
+    <div id="commandBar" class="command-bar" hidden>
+      <span>&gt;</span>
+      <input id="commandInput" autocomplete="off" autocapitalize="sentences" spellcheck="false" maxlength="90" aria-label="Type an adventure-game command">
+      <button id="commandSend" type="button">DO IT</button>
+    </div>
+    <button id="fullscreen" class="glass-button" type="button" aria-label="Toggle fullscreen">⛶</button>
+  </main>
+  <noscript>This game needs JavaScript enabled.</noscript>
+  <script>
+  (()=>{
+    const ROOT='https://raw.githubusercontent.com/Mrrisaac/Garage_Boss/remaster/remaster-build/';
+    const get=name=>fetch(ROOT+name+'?v=benchmark-1',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error(name+' failed to load');return r.text()});
+    const unzip=async data=>{
+      const bytes=Uint8Array.from(atob(data.trim()),c=>c.charCodeAt(0));
+      const stream=new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'));
+      return new Response(stream).text();
+    };
+    Promise.all([
+      get('css.gz.b64'),get('js-01.b64'),get('js-02.b64'),get('js-03a.b64'),get('js-03b.b64'),get('js-04a.b64'),get('js-04b.b64')
+    ]).then(async ([css,...parts])=>{
+      const [styleText,scriptText]=await Promise.all([unzip(css),unzip(parts.join(''))]);
+      const style=document.createElement('style');style.textContent=styleText;document.head.appendChild(style);
+      Function(scriptText)();
+    }).catch(err=>{
+      document.body.innerHTML='<main style="color:white;background:black;min-height:100vh;padding:2rem;font:16px monospace">The remaster could not start. Please refresh in a current version of Chrome, Edge, Firefox, or Safari.<br><br>'+String(err)+'</main>';
+    });
+  })();
+  </script>
+</body>
+</html>
