@@ -1,53 +1,42 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0a0c12">
-<title>Garage Boss: The Last Space in Manhattan</title>
-<link rel="stylesheet" href="styles.css?v=3">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+  <meta name="theme-color" content="#05060c">
+  <meta name="description" content="Garage Boss Remastered, an original Sierra-era inspired parking comedy adventure.">
+  <title>Garage Boss Remastered: Headquarters</title>
 </head>
 <body>
-<div id="scanlines"></div>
-<header class="topbar">
-  <div class="brand"><span class="brand-main">GARAGE BOSS</span><span class="brand-sub">THE LAST SPACE IN MANHATTAN</span></div>
-  <div class="top-actions">
-    <button id="musicBtn" class="iconbtn" title="Music">♫</button>
-    <button id="soundBtn" class="iconbtn" title="Sound">🔊</button>
-    <button id="saveBtn" class="iconbtn" title="Save">💾</button>
-    <button id="loadBtn" class="iconbtn" title="Load">↻</button>
-    <button id="helpBtn" class="iconbtn" title="Help">?</button>
-  </div>
-</header>
-<main id="game">
-  <section class="hud">
-    <div class="hud-card"><span>TIME</span><strong id="time">7:58 AM</strong></div>
-    <div class="hud-card"><span>SCORE</span><strong><b id="score">0</b> / 800</strong></div>
-    <div class="hud-card stress-card"><span>STRESS</span><strong><b id="stress">15</b>%</strong><div class="meter"><i id="stressBar"></i></div></div>
-    <div class="hud-card"><span>OBJECTIVE</span><strong id="objective">Make it to the 9:00 AM supervisors meeting.</strong></div>
-  </section>
-  <section class="layout">
-    <div class="stage-wrap">
-      <div id="stage" class="stage office" aria-label="game scene">
-        <div class="skyline"></div><div class="scene-label" id="sceneLabel">Garage Division Office</div><div id="props"></div>
-        <div id="avatar" class="avatar"><div class="hair"></div><div class="head"></div><div class="torso"></div><div class="arm a1"></div><div class="arm a2"></div><div class="leg l1"></div><div class="leg l2"></div></div>
-        <div id="hotspots"></div><div id="toast" class="toast"></div>
-      </div>
-      <div class="dialogue"><div class="portrait" id="portrait">RI</div><div class="dialogue-main"><div class="speaker" id="speaker">CHRISTINE</div><div class="dialogue-text" id="dialogueText">Richie, before you answer that phone... we have a problem.</div><div class="choices" id="choices"></div></div></div>
-      <div class="verbs" id="verbs"><button data-verb="WALK" class="active">🚶 WALK</button><button data-verb="LOOK">👁 LOOK</button><button data-verb="TALK">💬 TALK</button><button data-verb="USE">🛠 USE</button><button data-verb="TAKE">✋ TAKE</button></div>
+  <main id="shell" aria-label="Garage Boss Remastered">
+    <canvas id="game" width="320" height="200" aria-label="Point-and-click adventure game"></canvas>
+    <div id="commandBar" class="command-bar" hidden>
+      <span>&gt;</span>
+      <input id="commandInput" autocomplete="off" autocapitalize="sentences" spellcheck="false" maxlength="90" aria-label="Type an adventure-game command">
+      <button id="commandSend" type="button">DO IT</button>
     </div>
-    <aside class="sidebar">
-      <div class="panel"><div class="panel-title"><span>MANHATTAN MAP</span><button id="mapBtn">OPEN</button></div><div id="miniMap" class="minimap"></div></div>
-      <div class="panel"><div class="panel-title">INVENTORY <small id="invCount">0</small></div><div id="inventory" class="inventory"></div></div>
-      <div class="panel"><div class="panel-title">CASE BOARD</div><div id="caseBoard" class="case-board"></div></div>
-      <div class="panel"><div class="panel-title">ACHIEVEMENTS <small id="achCount">0</small></div><div id="achievements" class="achievement-list"></div></div>
-    </aside>
-  </section>
-</main>
-<div id="modal" class="modal show" role="dialog" aria-modal="true"><div class="modal-card"><h2 id="modalTitle">MONDAY, 7:58 AM</h2><div id="modalBody"></div><div id="modalActions" class="modal-actions"></div></div></div>
-<footer>Original comedy adventure • autosaves locally • best with sound on</footer>
-<script src="game.js?v=3"></script>
-<script src="chapter2.js?v=3"></script>
-<script src="chapter2-hotfix.js?v=3"></script>
+    <button id="fullscreen" class="glass-button" type="button" aria-label="Toggle fullscreen">⛶</button>
+  </main>
+  <noscript>This game needs JavaScript enabled.</noscript>
+  <script>
+  (()=>{
+    const ROOT='https://raw.githubusercontent.com/Mrrisaac/Garage_Boss/remaster/remaster-build/';
+    const get=name=>fetch(ROOT+name+'?v=benchmark-1',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error(name+' failed to load');return r.text()});
+    const unzip=async data=>{
+      const bytes=Uint8Array.from(atob(data.trim()),c=>c.charCodeAt(0));
+      const stream=new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'));
+      return new Response(stream).text();
+    };
+    Promise.all([
+      get('css.gz.b64'),get('js-01.b64'),get('js-02.b64'),get('js-03a.b64'),get('js-03b.b64'),get('js-04a.b64'),get('js-04b.b64')
+    ]).then(async ([css,...parts])=>{
+      const [styleText,scriptText]=await Promise.all([unzip(css),unzip(parts.join(''))]);
+      const style=document.createElement('style');style.textContent=styleText;document.head.appendChild(style);
+      Function(scriptText)();
+    }).catch(err=>{
+      document.body.innerHTML='<main style="color:white;background:black;min-height:100vh;padding:2rem;font:16px monospace">The remaster could not start. Please refresh in a current version of Chrome, Edge, Firefox, or Safari.<br><br>'+String(err)+'</main>';
+    });
+  })();
+  </script>
 </body>
 </html>
