@@ -8,7 +8,7 @@ async function openGame(page) {
   });
 
   await page.goto('/?releaseTest=1');
-  await expect(page).toHaveTitle('Garage Boss v0.3: Command Center');
+  await expect(page).toHaveTitle('Garage Boss v0.3.0: Command Center');
   await expect(page.locator('#modalTitle')).toHaveText('MONDAY, 7:58 AM');
   await expect(page.getByRole('button', { name: 'Start Chapter 1' })).toBeVisible();
   await expect(page.locator('footer')).toContainText('Garage Boss v0.3.0');
