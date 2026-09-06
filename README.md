@@ -1,12 +1,12 @@
-# Garage Boss v0.3: Command Center
+# Garage Boss v0.3.0: Command Center
 
 An original parking-management comedy point-and-click adventure inspired by classic 1990s adventure-game design.
 
 ## Play
 
-Open `index.html` in a browser or use the GitHub Pages site after publishing from `main`. No build step is required for the game itself.
+### [▶ Play Garage Boss v0.3.0](https://mrrisaac.github.io/Garage_Boss/)
 
-The game contains two complete story chapters. Progress autosaves in the browser, and the save button can be used at any time.
+The game runs directly in a browser with no installation or build step. It contains two complete story chapters, autosaves progress locally, and includes manual save and load controls.
 
 ## Chapter 1: The Last Space in Manhattan
 
@@ -53,4 +53,4 @@ GitHub Actions runs the same release suite for pull requests and pushes to `main
 
 ## Publishing
 
-The production game is served directly from the repository root. GitHub Pages can publish from the `main` branch without a build step.
+The production game is served directly from the repository root through GitHub Pages.
