@@ -1,0 +1,14 @@
+{
+  "name": "garage-boss-command-center",
+  "version": "0.3.0",
+  "private": true,
+  "description": "Browser tests for Garage Boss v0.3",
+  "scripts": {
+    "test": "playwright test",
+    "test:desktop": "playwright test --project=chromium-desktop",
+    "test:mobile": "playwright test --project=chromium-mobile"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.55.0"
+  }
+}
