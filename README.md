@@ -1,23 +1,56 @@
-# Garage Boss: The Last Space in Manhattan
+# Garage Boss v0.3: Command Center
 
 An original parking-management comedy point-and-click adventure inspired by classic 1990s adventure-game design.
 
 ## Play
-Open `index.html` in a browser, or publish the repository with GitHub Pages.
 
-## Current chapter
-Chapter 1 follows Richie through a chaotic Monday of garage operations involving a damage claim, POS failure, stuck stacker, prohibited furniture, a misapplied monthly payment, and an inspection.
+Open `index.html` in a browser or use the GitHub Pages site after publishing from `main`. No build step is required for the game itself.
 
-## Features
-- Multiple garage locations
-- LOOK / TALK / USE / TAKE commands
-- Inventory puzzles
-- Garage Score
-- Stress meter
-- Time progression
-- Multiple bad-management choices
-- Game-over sequences
-- Executive-office finale
+The game contains two complete story chapters. Progress autosaves in the browser, and the save button can be used at any time.
 
-## GitHub Pages
-Publish from the `main` branch and repository root. Because the game is a single static `index.html` file, no build step is required.
+## Chapter 1: The Last Space in Manhattan
+
+Richie handles a chaotic Monday involving a damage claim, a POS failure, a stuck stacker, prohibited furniture, a misapplied monthly payment, an inspection, an oversized vehicle dispute, and missing keys.
+
+## Chapter 2: The United Nations Is Coming
+
+The garage network faces street closures, diplomatic vehicles, security checkpoints, event rates, validations, gridlock, press equipment, and overflow capacity.
+
+## v0.3 Command Center
+
+Chapter 2 now includes a live management layer with:
+
+- Three simultaneous dispatch incidents with in-game deadlines
+- Delegation choices involving equipment, construction, and staffing
+- Immediate and delayed consequences
+- Chapter-aware scoring, with Chapter 2 supporting its full 1,600-point range
+- Safety, Compliance, Customer Service, Revenue, and Staff Management ratings
+- A final Command Center performance report
+- Save migration for earlier Chapter 2 saves
+- A safe full reset when replaying from Chapter 1
+- Mobile layout improvements and keyboard access with the `C` key
+- Installable and offline-capable web app support after the first online visit
+
+The Command Center can be opened from the `CMD` button, the sidebar panel, or the `C` key.
+
+## Controls
+
+Use **WALK**, **LOOK**, **TALK**, **USE**, and **TAKE** to interact with scene objects. To use an inventory item on mobile, select **USE**, tap the inventory item, then tap the scene object.
+
+## Release testing
+
+The repository includes Playwright end-to-end tests for desktop Chrome and a Pixel-sized mobile viewport. The tests cover startup, score caps, Command Center decisions, delayed consequences, saving and loading, the Chapter 2 finale, clean replay, and viewport overflow.
+
+Run locally with:
+
+```bash
+npm install
+npx playwright install chromium
+npm test
+```
+
+GitHub Actions runs the same release suite for pull requests and pushes to `main`.
+
+## Publishing
+
+The production game is served directly from the repository root. GitHub Pages can publish from the `main` branch without a build step.
