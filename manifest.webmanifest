@@ -1,0 +1,12 @@
+{
+  "name": "Garage Boss: Command Center",
+  "short_name": "Garage Boss",
+  "description": "A parking-management comedy adventure through two chapters of Manhattan garage chaos.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#090b10",
+  "theme_color": "#0a0c12",
+  "categories": ["games", "entertainment"]
+}
