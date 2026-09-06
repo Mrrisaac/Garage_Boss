@@ -1,0 +1,42 @@
+/* Garage Boss v0.3 release accessibility and mobile polish */
+button{touch-action:manipulation}
+.iconbtn,.panel-title button,.modal-actions button,.dispatch-choices button,.command-open{min-height:44px}
+.dispatch-choices button:focus-visible,.command-open:focus-visible,.iconbtn:focus-visible,.verbs button:focus-visible,.choices button:focus-visible,.inventory button:focus-visible,.map-node:focus-visible{outline:3px solid var(--cyan);outline-offset:2px}
+.modal-card{overscroll-behavior:contain}
+.command-final-report .command-metrics{margin-bottom:4px}
+
+@media(max-width:560px){
+  .topbar{align-items:flex-start;flex-wrap:wrap;gap:6px}
+  .brand{flex:1 1 135px;min-width:0}
+  .brand-main{font-size:20px;letter-spacing:1px}
+  .top-actions{flex:1 1 180px;max-width:215px;flex-wrap:wrap;justify-content:flex-end}
+  .iconbtn{min-width:36px;padding:6px 5px}
+  .command-btn{min-width:44px}
+  .hud{gap:5px}
+  .hud-card{padding:7px;min-width:0}
+  .hud-card strong{overflow-wrap:anywhere}
+  .stage{min-height:300px}
+  .verbs{position:sticky;bottom:0;z-index:26;background:#090b10eF;padding:4px;border:1px solid #303746}
+  .dialogue-text{font-size:14px}
+  .choices button,.inventory button,.map-node{min-height:44px}
+  .modal{padding:8px}
+  .modal-card{width:100%;max-height:94vh;border-width:3px;padding:13px}
+  .modal-actions{display:grid;grid-template-columns:1fr}
+  .modal-actions button{width:100%}
+  .command-overview{gap:5px}
+  .command-overview>div{padding:8px}
+  .command-overview strong{font-size:14px;overflow-wrap:anywhere}
+  .command-metrics{gap:8px 6px}
+  .dispatch-card{padding:10px;border-left-width:5px}
+  .dispatch-card h3{font-size:14px}
+  .dispatch-card>p{font-size:11px}
+}
+
+@media(max-width:380px){
+  .top-actions{max-width:185px}
+  .iconbtn{min-width:34px;padding:5px 4px}
+  .brand-main{font-size:18px}
+  .hud-card span{font-size:9px}
+  .verbs button{font-size:8px}
+  .inventory{grid-template-columns:1fr 1fr}
+}
